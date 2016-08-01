@@ -1,0 +1,68 @@
+{
+  "name": "postcss-clip-path-polyfill",
+  "version": "1.0.0",
+  "description": "Generates SVG fallback for clip-path properties to make it works in Firefox",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "./node_modules/.bin/babel src -d lib",
+    "test": "./node_modules/.bin/eslint src/*js test/*.js && ./node_modules/.bin/ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komachi/postcss-clip-path-polyfill.git"
+  },
+  "keywords": [
+    "clip-path",
+    "css",
+    "postcss",
+    "postcss-plugin",
+    "polyfill"
+  ],
+  "author": "Anton Nesterov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/komachi/postcss-clip-path-polyfill/issues"
+  },
+  "homepage": "https://github.com/komachi/postcss-clip-path-polyfill#readme",
+  "dependencies": {
+    "ava": "^0.15.2",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.11.6",
+    "postcss": "^5.1.1"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "eslint": "^3.2.0",
+    "eslint-config-defaults": "^9.0.0",
+    "node-style-guide": "^1.0.0"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "failFast": true,
+    "verbose": true,
+    "babel": "inherit",
+    "files": [
+      "test/*.test.js"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": [
+      "defaults",
+      "./node_modules/node-style-guide/.eslintrc"
+    ],
+    "rules": {
+      "space-after-keywords": "off",
+      "keyword-spacing": [2, {"before": true, "after": true}]
+    }
+  }
+}
