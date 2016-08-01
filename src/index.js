@@ -26,6 +26,7 @@ module.exports = postcss.plugin('postcss-clip-path-polyfill', () => css => {
     let svgDecl = decl.cloneBefore({
       value: `url('data:image/svg+xml;utf8,${svg}#p')`
     });
+    decl.cloneAfter({prop: '-webkit-' + decl.prop});
     decl.moveBefore(svgDecl);
   });
 });
