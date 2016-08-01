@@ -1,8 +1,8 @@
 {
   "name": "postcss-clip-path-polyfill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates SVG fallback for clip-path properties to make it works in Firefox",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublish": "./node_modules/.bin/babel src -d lib",
     "test": "./node_modules/.bin/eslint src/*js test/*.js && ./node_modules/.bin/ava"
