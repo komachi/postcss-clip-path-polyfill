@@ -19,14 +19,16 @@ module.exports = postcss.plugin('postcss-clip-path-polyfill', () => css => {
         }).join(' ');
       }).join(' ');
     }).join(', ');
-    let svg = encodeURI('<svg xmlns="http://www.w3.org/2000/svg">' +
+    let svg = String('<svg xmlns="http://www.w3.org/2000/svg">' +
 '<defs><clipPath id="p" clipPathUnits="objectBoundingBox">' +
 '<polygon points="' + polygons + '" /></clipPath></defs></svg>')
-  .replace(/%20/g, ' ').replace(/%22/g, '"');
-    let svgDecl = decl.cloneBefore({
+    .replace(/%/g, '%25')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E')
+    .replace(/&/g, '%26')
+    .replace(/#/g, '%23');
+    decl.cloneBefore({
       value: `url('data:image/svg+xml;utf8,${svg}#p')`
     });
-    decl.cloneAfter({prop: '-webkit-' + decl.prop});
-    decl.moveBefore(svgDecl);
   });
 });
