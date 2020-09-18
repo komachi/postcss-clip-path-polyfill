@@ -23,7 +23,7 @@
 ## Installation
 
 ```
-npm i postcss-clip-path-polyfill --save-dev
+npm i postcss postcss-clip-path-polyfill --save-dev
 ```
 
 ## Usage
