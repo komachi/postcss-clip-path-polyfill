@@ -1,11 +1,10 @@
 {
   "name": "postcss-clip-path-polyfill",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Generates SVG fallback for clip-path properties to make it works in Firefox",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "prepublish": "./node_modules/.bin/babel src -d lib",
-    "test": "./node_modules/.bin/eslint src/*js test/*.js && ./node_modules/.bin/ava"
+    "test": "jest-ci --coverage && eslint-ci ."
   },
   "repository": {
     "type": "git",
@@ -24,44 +23,46 @@
     "url": "https://github.com/komachi/postcss-clip-path-polyfill/issues"
   },
   "homepage": "https://github.com/komachi/postcss-clip-path-polyfill#readme",
-  "dependencies": {
-    "postcss": "^5.1.1"
-  },
   "devDependencies": {
-    "ava": "^0.15.2",
-    "babel-cli": "^6.11.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-register": "^6.11.6",
-    "eslint": "^3.2.0",
-    "eslint-config-defaults": "^9.0.0",
-    "node-style-guide": "^1.0.0"
+    "clean-publish": "^1.1.8",
+    "eslint": "^7.9.0",
+    "eslint-ci": "^1.0.0",
+    "eslint-plugin-jest": "^24.0.1",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "jest-ci": "^0.1.1",
+    "jest-cli": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "postcss": "^8.0.5"
   },
-  "ava": {
-    "require": [
-      "babel-register"
-    ],
-    "failFast": true,
-    "verbose": true,
-    "babel": "inherit",
-    "files": [
-      "test/*.test.js"
-    ]
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
     "env": {
       "node": true,
       "es6": true
     },
-    "parserOptions": {
-      "sourceType": "module"
-    },
     "extends": [
-      "defaults",
-      "./node_modules/node-style-guide/.eslintrc"
+      "eslint:recommended",
+      "plugin:jest/recommended"
     ],
     "rules": {
-      "space-after-keywords": "off",
-      "keyword-spacing": [2, {"before": true, "after": true}]
+      "jest/expect-expect": "off"
     }
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
